@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <button mat-button fxFlex (click)="onClick('home')" [ngClass]="currentSelected != 'home' ? 'unselected' : ''">
+    <mat-icon>home</mat-icon>
+    <span *ngIf="currentSelected == 'home'">Oversigt</span>
+  </button>
+
+  <button mat-button fxFlex (click)="onClick('shopping')" [ngClass]="currentSelected != 'shopping' ? 'unselected' : ''">
+    <mat-icon>shopping_cart</mat-icon>
+    <span *ngIf="currentSelected == 'shopping'">Vi Mangler</span>
+  </button>
+
+  <button mat-button fxFlex (click)="onClick('accounting')" [ngClass]="currentSelected != 'accounting' ? 'unselected' : ''">
+    <mat-icon>credit_card</mat-icon>
+    <span *ngIf="currentSelected == 'accounting'">Regnskab</span>
+  </button>
+
+  <button mat-button fxFlex (click)="onClick('chat')" [ngClass]="currentSelected != 'chat' ? 'unselected' : ''">
+    <mat-icon>monitor_heart</mat-icon>
+    <span *ngIf="currentSelected == 'chat'">Gossip</span>
+  </button>
+</div>
