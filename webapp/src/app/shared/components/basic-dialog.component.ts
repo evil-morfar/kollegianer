@@ -10,7 +10,7 @@ import { Component, Inject, OnInit } from '@angular/core';
       <mat-card-content>{{data.text ?? ""}}</mat-card-content>
       <mat-card-actions fxLayout fxLayoutAlign="end center">
         <button mat-raised-button color="warn" (click)="closeDialog()">
-          ANNULER
+          {{"modal.cancel" | i18n}}
         </button>
         <button
           mat-raised-button

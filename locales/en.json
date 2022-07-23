@@ -116,7 +116,7 @@
     "delete_account_modal_text": "Are you sure you want to delete your account?",
     "keyphrase": "Keyphrase",
     "keyphrase_placeholder": "Aa",
-    "phone_number": "Phone",
+    "phone_number": "Phone:",
     "phone_number_placeholder": "88888888",
     "color": "Theme color:",
     "color_placeholder": "Color code",

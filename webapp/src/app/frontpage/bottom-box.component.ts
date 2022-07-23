@@ -1,5 +1,3 @@
-import { TopBoxComponent } from './top-box.component';
-import { Observable, of } from 'rxjs';
 import { FirebaseService } from './../services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -21,25 +19,29 @@ import { Component, OnInit } from '@angular/core';
     </div>
     <div class="section">
       <app-colored-info-badge
-        header="BeerPong på coxk"
+        header="{{ 'overview.beerpong_button' | i18n }}"
         imgPath="assets/img/beerpong.png"
         (click)="fbs.toggleBeerPong()"
-        [infoText]="(fbs.getBeerPong() | async) || 'Nah fam'"
-        [toggled]="(fbs.getBeerPong() | async) != ''"
+        [infoText]="
+          ((fbs.getBeerPong() | async)
+            ? 'overview.beerpong_button_true'
+            : 'overview.beerpong_button_false') | i18n
+        "
+        [toggled]="(fbs.getBeerPong() | async) === true"
       ></app-colored-info-badge>
       <app-colored-info-badge
-        header="PARTY MODE"
+        header="{{'overview.partymode_button' | i18n}}"
         imgPath="assets/img/party_mode.png"
         (click)="fbs.togglePartyMode()"
-        [infoText]="(fbs.getPartyMode() | async) || 'Später mein freund'"
+        [infoText]="(fbs.getPartyMode() | async) || ('overview.partymode_button_false' | i18n)"
         [toggled]="(fbs.getPartyMode() | async) != ''"
       >
       </app-colored-info-badge>
       <app-colored-info-badge
-        header="Øl-ræven"
+        header="{{'overview.fox_button' | i18n}}"
         imgPath="assets/img/fox.png"
         (click)="fbs.toggleFox()"
-        [infoText]="(fbs.getFox() | async) ? 'ofc på 1700' : 'Nah fam'"
+        [infoText]="((fbs.getFox() | async) ? 'overview.fox_button_true' : 'overview.fox_button_false') | i18n"
         [toggled]="!!(fbs.getFox() | async)"
       ></app-colored-info-badge>
     </div>
@@ -68,10 +70,17 @@ export class BottomBoxComponent implements OnInit {
   ngOnInit(): void {}
 
   shotsOnClick() {
+    // TODO
     console.log('shotsOnClick');
   }
 
   mvpOnClick() {
+    // TODO
     console.log('mvpOnClick');
+  }
+
+  getNextBirthday() {
+    // TODO
+    console.log('getNextBirthday');
   }
 }

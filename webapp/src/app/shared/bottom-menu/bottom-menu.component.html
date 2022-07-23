@@ -1,21 +1,21 @@
 <div fxLayout="row" fxLayoutAlign="space-between">
   <button mat-button fxFlex (click)="onClick('home')" [ngClass]="currentSelected != 'home' ? 'unselected' : ''">
     <mat-icon>home</mat-icon>
-    <span *ngIf="currentSelected == 'home'">Oversigt</span>
+    <span *ngIf="currentSelected == 'home'">{{"overview.overview" | i18n}}</span>
   </button>
 
   <button mat-button fxFlex (click)="onClick('shopping')" [ngClass]="currentSelected != 'shopping' ? 'unselected' : ''">
     <mat-icon>shopping_cart</mat-icon>
-    <span *ngIf="currentSelected == 'shopping'">Vi Mangler</span>
+    <span *ngIf="currentSelected == 'shopping'">{{"vi_mangler.vi_mangler" | i18n}}</span>
   </button>
 
   <button mat-button fxFlex (click)="onClick('accounting')" [ngClass]="currentSelected != 'accounting' ? 'unselected' : ''">
     <mat-icon>credit_card</mat-icon>
-    <span *ngIf="currentSelected == 'accounting'">Regnskab</span>
+    <span *ngIf="currentSelected == 'accounting'">{{"accounting.accounting" | i18n}}</span>
   </button>
 
   <button mat-button fxFlex (click)="onClick('chat')" [ngClass]="currentSelected != 'chat' ? 'unselected' : ''">
     <mat-icon>monitor_heart</mat-icon>
-    <span *ngIf="currentSelected == 'chat'">Gossip</span>
+    <span *ngIf="currentSelected == 'chat'">{{"gossip.gossip" | i18n}}</span>
   </button>
 </div>

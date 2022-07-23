@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import { I18nService } from '../shared/services/i18n.service'
 
 @Component({
   selector: 'app-settings-page',
   template: `
     <app-top-menu
-      title="Settings"
+      title="{{'settings.settings' | i18n}}"
       [hideSettings]="true"
       fxFlex="0 10 100%"
     ></app-top-menu>
@@ -16,37 +17,37 @@ import {Component, OnInit} from '@angular/core';
       fxLayout="column"
       fxLayoutGap="1rem"
     >
-      <h2>Profil</h2>
+      <h2>{{"settings.profile" | i18n}}</h2>
       <mat-form-field fxFlex fxLayout="column">
-        <p>Navn:</p>
+        <p>{{"settings.name" | i18n}}</p>
         <input matInput type="text" value="Nichlas N Pilemand" />
       </mat-form-field>
       <mat-form-field fxFlex fxLayout="column">
-        <p>Email:</p>
+        <p>{{"settings.email" | i18n}}</p>
         <input matInput type="email" value="nnpilemand@gmail.com" />
       </mat-form-field>
       <mat-form-field fxFlex fxLayout="column">
-        <p>Fødselsdato:</p>
+        <p>{{"settings.birthday" | i18n}}</p>
         <input matInput type="string" value="29/03/1992" />
       </mat-form-field>
       <mat-form-field fxFlex fxLayout="column">
-        <p>Telefon:</p>
+        <p>{{"settings.phone_number" | i18n }}</p>
         <input matInput type="tel" value="20441559" />
       </mat-form-field>
       <mat-form-field fxFlex fxLayout="column">
-        <p>Værelse:</p>
+        <p>{{"settings.room" | i18n }}</p>
         <input matInput type="number" value="1701" />
       </mat-form-field>
       <div>
-        <p>Tjans:</p>
+        <p>{{"settings.duty" | i18n }}</p>
         <p>Regnskab</p>
       </div>
       <div>
-        <p>Temafarve:</p>
+        <p>{{"settings.color" | i18n }}</p>
         <p>#ffffff</p>
       </div>
-      <button mat-raised-button color="primary">Skift adgangskode</button>
-      <button mat-raised-button color="warn">Slet konto</button>
+      <button mat-raised-button color="primary">{{"settings.change_password" | i18n}}</button>
+      <button mat-raised-button color="warn">{{"settings.delete_account" | i18n }}</button>
     </div>
   `,
   styles: [
@@ -71,7 +72,7 @@ import {Component, OnInit} from '@angular/core';
   ],
 })
 export class SettingsPageComponent implements OnInit {
-  constructor() {}
+  constructor(public i18n: I18nService) {}
 
   ngOnInit(): void {}
 }

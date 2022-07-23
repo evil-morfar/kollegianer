@@ -1,3 +1,4 @@
+import { I18nService } from './../shared/services/i18n.service';
 import {BasicDialogComponent} from './../shared/components/basic-dialog.component';
 import {FirebaseService} from './../services/firebase.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
@@ -9,7 +10,7 @@ import {Dialog} from '@angular/cdk/dialog';
   selector: 'app-shopping-page',
   template: `
     <mat-form-field>
-      <mat-label>Beskrivelse</mat-label>
+      <mat-label>{{ 'vi_mangler.description' | i18n }}</mat-label>
       <input
         matInput
         type="text"
@@ -77,7 +78,7 @@ export class ShoppingPageComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
   private dialogOpen = false;
 
-  constructor(private fbs: FirebaseService, private dialog: Dialog) {}
+  constructor(private fbs: FirebaseService, private dialog: Dialog, private i18n: I18nService) {}
 
   ngOnInit(): void {
     this.subscription.add(
@@ -114,9 +115,12 @@ export class ShoppingPageComponent implements OnInit, OnDestroy {
       .open(BasicDialogComponent, {
         minWidth: '90vw',
         data: {
-          header: 'Slet ' + item.item,
-          text: 'Er du sikker på at du vil slette ' + item.item + '?',
-          buttonName: 'SLET',
+          header: this.i18n.get('vi_mangler.delete_modal_title') + item.item,
+          text:
+            this.i18n.get('vi_mangler.delete_modal_text') + item.item + '?',
+          buttonName: this.i18n
+            .get('vi_mangler.delete_model_ok')
+            .toUpperCase(),
           buttonFunc: () => {
             this.fbs.removeViMangler(index);
           },

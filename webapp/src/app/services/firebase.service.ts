@@ -17,9 +17,9 @@ export class FirebaseService {
   });
   private shots = new BehaviorSubject<string>('Nichlas');
   private mvp = new BehaviorSubject<string>('Nichlas');
-  private beerPong = new BehaviorSubject<string>('');
+  private beerPong = new BehaviorSubject<boolean>(false);
   private partyMode = new BehaviorSubject<string>('');
-  private fox = new BehaviorSubject<Boolean>(false);
+  private fox = new BehaviorSubject<boolean>(false);
 
   private viMangler = new BehaviorSubject<ViMangler[]>([
     new ViMangler('1701', 'Test item', '16/7'),
@@ -83,7 +83,7 @@ export class FirebaseService {
     this.mvp.next(mvp);
   }
   toggleBeerPong() {
-    this.beerPong.next(this.beerPong.getValue() == '' ? 'Nichlas' : '');
+    this.beerPong.next(!this.beerPong.value);
   }
   togglePartyMode() {
     this.partyMode.next(this.partyMode.getValue() == '' ? 'Nichlas' : '');

@@ -19,8 +19,9 @@ import { interval, map, Observable, of, tap } from 'rxjs'
     ></app-info-badge>
     <app-info-badge
       imgPath="assets/img/fish.png"
-      infoText="Sidst fodret {{
-        (fish | async) | date: 'ccc dd MMM HH:mm'
+      infoText="{{
+        ('overview.last_fed' | i18n) + ' ' +
+        ((fish | async) | date: 'ccc dd MMM HH:mm')
       }}"
     ></app-info-badge>
     <app-info-badge

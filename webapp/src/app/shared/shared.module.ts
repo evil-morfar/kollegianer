@@ -1,3 +1,5 @@
+import { I18nPipe } from './pipes/i18n.pipe';
+import { I18nService } from './services/i18n.service';
 import { BasicDialogComponent } from './components/basic-dialog.component';
 import { TextFieldModule } from '@angular/cdk/text-field'
 import { CommonModule } from '@angular/common'
@@ -32,7 +34,8 @@ import { LongPressDirective } from './directives/long-press.directive'
     ContainerComponent,
     TopMenuComponent,
     LongPressDirective,
-    BasicDialogComponent
+    BasicDialogComponent,
+    I18nPipe
   ],
   imports: [
     CommonModule,
@@ -85,6 +88,9 @@ import { LongPressDirective } from './directives/long-press.directive'
     ContainerComponent,
     TopMenuComponent,
     LongPressDirective,
+    I18nPipe
   ],
+
+  providers: [ I18nService ],
 })
 export class SharedModule {}
