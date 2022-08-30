@@ -9,7 +9,7 @@ import {Dialog} from '@angular/cdk/dialog';
 @Component({
   selector: 'app-shopping-page',
   template: `
-    <mat-form-field>
+    <mat-form-field class="content">
       <mat-label>{{ 'vi_mangler.description' | i18n }}</mat-label>
       <input
         matInput
@@ -28,7 +28,7 @@ import {Dialog} from '@angular/cdk/dialog';
       </button>
     </mat-form-field>
     <div
-      class="item"
+      class="content item"
       *ngFor="let item of viMangler; index as i"
       longPress
       (mouseLongPress)="onLongPress(i)"
@@ -51,10 +51,10 @@ import {Dialog} from '@angular/cdk/dialog';
       flex: 2 1 80vh
       flex-direction: column
       justify-content: flex-start
-      padding: 1rem
+      padding: 1rem 0
 
       .item
-        margin: 5px 5px
+        /* margin: 5px 5px */
         text-align: center
         align-items: center
         border-top-style: solid
@@ -78,7 +78,11 @@ export class ShoppingPageComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
   private dialogOpen = false;
 
-  constructor(private fbs: FirebaseService, private dialog: Dialog, private i18n: I18nService) {}
+  constructor(
+    private fbs: FirebaseService,
+    private dialog: Dialog,
+    private i18n: I18nService,
+  ) {}
 
   ngOnInit(): void {
     this.subscription.add(
@@ -116,11 +120,8 @@ export class ShoppingPageComponent implements OnInit, OnDestroy {
         minWidth: '90vw',
         data: {
           header: this.i18n.get('vi_mangler.delete_modal_title') + item.item,
-          text:
-            this.i18n.get('vi_mangler.delete_modal_text') + item.item + '?',
-          buttonName: this.i18n
-            .get('vi_mangler.delete_model_ok')
-            .toUpperCase(),
+          text: this.i18n.get('vi_mangler.delete_modal_text') + item.item + '?',
+          buttonName: this.i18n.get('vi_mangler.delete_model_ok').toUpperCase(),
           buttonFunc: () => {
             this.fbs.removeViMangler(index);
           },

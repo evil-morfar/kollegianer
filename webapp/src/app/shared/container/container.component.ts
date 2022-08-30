@@ -5,10 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './container.component.html',
   styles: [`
   :host
-    flex-wrap: wrap
-    justify-content: center
-    height: 100vh
+    display: flex
+    height: 100%
+    max-height: 100vh
     overflow: hidden
+    flex-direction: column
+
+  div
+    height: inherit
   `]
 })
 export class ContainerComponent implements OnInit {

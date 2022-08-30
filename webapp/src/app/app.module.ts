@@ -14,6 +14,10 @@ import { ShoppingPageComponent } from './components/shopping-page.component';
 import { AccountingPageComponent } from './components/accounting-page.component';
 import { ChatPageComponent } from './components/chat-page.component';
 import { SettingsPageComponent } from './components/settings-page.component';
+import { AccountingHeaderComponent } from './components/accounting/accounting-header.component';
+import { AccountingFooterComponent } from './components/accounting/accounting-footer.component';
+import { AccountRendererComponent } from './components/accounting/account-renderer.component';
+import { AccountingTotalsComponent } from './components/accounting/accounting-totals.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { SettingsPageComponent } from './components/settings-page.component';
     AccountingPageComponent,
     ChatPageComponent,
     SettingsPageComponent,
+    AccountingHeaderComponent,
+    AccountingFooterComponent,
+    AccountRendererComponent,
+    AccountingTotalsComponent,
   ],
   imports: [
     BrowserModule,
