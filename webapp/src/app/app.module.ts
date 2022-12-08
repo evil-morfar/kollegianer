@@ -1,6 +1,31 @@
+import { environment } from './../environments/environment';
 import { FrontPageComponent } from './frontpage/front-page/front-page.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {AngularFireModule} from '@angular/fire/compat';
+import {
+  AngularFireDatabaseModule,
+  USE_EMULATOR as USE_DATABASE_EMULATOR,
+} from '@angular/fire/compat/database';
+import {
+  AngularFireAuthModule,
+  USE_DEVICE_LANGUAGE,
+  USE_EMULATOR as USE_AUTH_EMULATOR,
+} from '@angular/fire/compat/auth';
+import {
+  AngularFireFunctionsModule,
+  USE_EMULATOR as USE_FUNCTIONS_EMULATOR,
+} from '@angular/fire/compat/functions';
+// import {
+//   AngularFireStorageModule,
+//   USE_EMULATOR as USE_STORAGE_EMULATOR,
+// } from '@angular/fire/compat/storage';
+// import {
+//   AngularFireMessagingModule,
+//   SERVICE_WORKER,
+//   VAPID_KEY,
+// } from '@angular/fire/compat/messaging';
+import {AngularFireAuthGuardModule} from '@angular/fire/compat/auth-guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,10 +64,34 @@ import { AccountingTotalsComponent } from './components/accounting/accounting-to
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireFunctionsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: USE_AUTH_EMULATOR,
+      useValue: environment.useEmulators
+        ? ['http://localhost:9099']
+        : undefined,
+    },
+    {
+      provide: USE_DATABASE_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', 9000] : undefined,
+    },
+    {
+      provide: USE_FUNCTIONS_EMULATOR,
+      useValue: environment.useEmulators ? ['localhost', 5001] : undefined,
+    },
+    // {
+    //   provide: USE_STORAGE_EMULATOR,
+    //   useValue: environment.useEmulators ? ['localhost', 9199] : undefined,
+    // },
+    {provide: USE_DEVICE_LANGUAGE, useValue: true},
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

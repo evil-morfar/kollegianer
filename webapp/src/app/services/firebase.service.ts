@@ -1,6 +1,7 @@
+import {AngularFireDatabase} from '@angular/fire/compat/database';
 import {ViMangler} from './../models/ViMangler';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, firstValueFrom, lastValueFrom} from 'rxjs';
+import { BehaviorSubject, tap, firstValueFrom, pipe } from 'rxjs';
 import {User} from '../models/User';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class FirebaseService {
   });
   private shots = new BehaviorSubject<string>('Nichlas');
   private mvp = new BehaviorSubject<string>('Nichlas');
-  private beerPong = new BehaviorSubject<boolean>(false);
+  private beerPong = false;
   private partyMode = new BehaviorSubject<string>('');
   private fox = new BehaviorSubject<boolean>(false);
 
@@ -152,7 +153,7 @@ export class FirebaseService {
     },
   ]);
 
-  constructor() {}
+  constructor(private db: AngularFireDatabase) {}
 
   getKitchenWeek() {
     return this.kitchenWeek.asObservable();
@@ -171,21 +172,24 @@ export class FirebaseService {
   }
 
   getShots() {
-    return this.shots.asObservable();
+    return this.db.object<string>('/events/shots').valueChanges();
   }
 
   getMvp() {
-    return this.mvp.asObservable();
+    return this.db.object<string>('/events/mvp').valueChanges();
   }
 
   getBeerPong() {
-    return this.beerPong.asObservable();
+    return this.db
+      .object<boolean>('/events/beerpong')
+      .valueChanges()
+      // .pipe(tap(v => (this.beerPong = v === true)), tap(v => console.log("GetbeerPong", v)));
   }
   getPartyMode() {
-    return this.partyMode.asObservable();
+    return this.db.object<string>('/events/partymode').valueChanges();
   }
   getFox() {
-    return this.fox.asObservable();
+    return this.db.object<boolean>('/events/fox').valueChanges();
   }
 
   setKitchenWeek(kitchenWeek: string) {
@@ -210,7 +214,7 @@ export class FirebaseService {
     this.mvp.next(mvp);
   }
   toggleBeerPong() {
-    this.beerPong.next(!this.beerPong.value);
+    // this.db.object('/events/beerpong').set(this.beerPong);
   }
   togglePartyMode() {
     this.partyMode.next(this.partyMode.getValue() == '' ? 'Nichlas' : '');

@@ -23,25 +23,32 @@ import { Component, OnInit } from '@angular/core';
         imgPath="assets/img/beerpong.png"
         (click)="fbs.toggleBeerPong()"
         [infoText]="
-          ((fbs.getBeerPong() | async)
+          ((beerpong$ | async)
             ? 'overview.beerpong_button_true'
             : 'overview.beerpong_button_false') | i18n
         "
-        [toggled]="(fbs.getBeerPong() | async) === true"
+        [toggled]="(beerpong$ | async) === true"
       ></app-colored-info-badge>
       <app-colored-info-badge
-        header="{{'overview.partymode_button' | i18n}}"
+        header="{{ 'overview.partymode_button' | i18n }}"
         imgPath="assets/img/party_mode.png"
         (click)="fbs.togglePartyMode()"
-        [infoText]="(fbs.getPartyMode() | async) || ('overview.partymode_button_false' | i18n)"
+        [infoText]="
+          (fbs.getPartyMode() | async) ||
+          ('overview.partymode_button_false' | i18n)
+        "
         [toggled]="(fbs.getPartyMode() | async) != ''"
       >
       </app-colored-info-badge>
       <app-colored-info-badge
-        header="{{'overview.fox_button' | i18n}}"
+        header="{{ 'overview.fox_button' | i18n }}"
         imgPath="assets/img/fox.png"
         (click)="fbs.toggleFox()"
-        [infoText]="((fbs.getFox() | async) ? 'overview.fox_button_true' : 'overview.fox_button_false') | i18n"
+        [infoText]="
+          ((fbs.getFox() | async)
+            ? 'overview.fox_button_true'
+            : 'overview.fox_button_false') | i18n
+        "
         [toggled]="!!(fbs.getFox() | async)"
       ></app-colored-info-badge>
     </div>
@@ -64,6 +71,7 @@ import { Component, OnInit } from '@angular/core';
 export class BottomBoxComponent implements OnInit {
   mvp$ = this.fbs.getMvp();
   shots$ = this.fbs.getShots();
+  beerpong$ = this.fbs.getBeerPong();
 
   constructor(public fbs: FirebaseService) {}
 

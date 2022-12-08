@@ -1,0 +1,11 @@
+{
+  "rules": {
+    ".read": "true",
+    ".write": "true",
+    "user": {
+      "$uid": {
+        ".validate": "$uid != 'undefined' && !newData.child('password').exists()"
+      }
+    }
+  }
+}

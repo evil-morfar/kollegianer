@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "emulators": "cd firebase && firebase emulators:start --import=./mocks",
+    "serve-webapp": "cd webapp && ng serve"
   },
   "dependencies": {
     "@invertase/react-native-apple-authentication": "^1.0.0",
